@@ -1,4 +1,4 @@
-package com.Lungnaha.IntergratedWebsite.common;
+package com.Lungnaha.IntegratedWebsite.common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
