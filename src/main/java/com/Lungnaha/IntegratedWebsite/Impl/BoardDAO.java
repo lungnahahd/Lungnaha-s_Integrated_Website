@@ -1,4 +1,4 @@
-package com.Lungnaha.IntegratedWebsite.impl;
+package com.Lungnaha.IntegratedWebsite.Impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.Lungnaha.IntegratedWebsite.BoardVO;
-import com.Lungnaha.IntegratedWebsite.common.JDBCUtil;
+import com.Lungnaha.IntegratedWebsite.comm.JDBCUtil;
 
 // VO(데이터 콰린 클래스) 를 이용해서 실질적인 DB 연동을 담당하는 코드
 @Repository("boardDAO")
@@ -110,8 +110,6 @@ public class BoardDAO {
 				board.setTitle(rs.getString("TITLE"));
 				board.setWriter(rs.getString("WRITER"));
 				board.setContent(rs.getString("CONTENT"));
-				board.setRegDate(rs.getDate("REGDATE"));
-				board.setCnt(rs.getInt("CNT"));
 				boardList.add(board);
 			}
 		} catch (Exception e) {

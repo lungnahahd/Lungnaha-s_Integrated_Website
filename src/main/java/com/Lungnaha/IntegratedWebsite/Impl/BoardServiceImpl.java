@@ -1,4 +1,4 @@
-package com.Lungnaha.IntegratedWebsite.impl;
+package com.Lungnaha.IntegratedWebsite.Impl;
 
 import java.util.List;
 
