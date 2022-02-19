@@ -5,8 +5,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
+	<context:component-scan base-package="com.Lungnaha.IntegratedWebsite"></context:component-scan>
+	
 	<!-- DB 설정 -->
-	<context:property-placeholder location="classpath:config/database.properties"/>
+	<context:property-placeholder location="classpath:database.properties"/>
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}"></property>
@@ -20,10 +22,5 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
-	
-	
-	
-	
-	<context:component-scan base-package="com.Lungnaha.IntegratedWebsite"></context:component-scan>
 
 </beans>
