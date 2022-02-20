@@ -17,8 +17,9 @@ public class UserClient {
 //		vo.setRole("관리자");
 //		회원 가입 기능 테스트
 //		userService.signUp(vo);
+		System.out.println("----> " + vo.toString());
 		
-		UserVO user = userService.getUser(vo);
+		UserVO user = userService.getUser(vo.getId());
 		if (user != null) {
 			System.out.println(user.getName() + " 님 환영합니다.");
 			System.out.println(user.getRole() + " 등급입니다.");
