@@ -1,19 +1,25 @@
 package com.Lungnaha.IntegratedWebsite.Impl;
 
+import java.awt.print.Printable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.Lungnaha.IntegratedWebsite.UserService;
 import com.Lungnaha.IntegratedWebsite.UserVO;
 
 // 회원 관리 DAO 클래스 -> Database 연결
 @Repository("userDAO")
 public class UserDAO {
 	// 여기서도 BoardDAO와 마찬가지로 JdbcTemplate 사용해보기
+	
 	@Autowired // 사전에 <bean> 등록했기에 가져올 수 있는 것
 	private JdbcTemplate jdbcTemplate; // 순수 JDBC가 아닌 JdbcTemplate을 활용해서 DB 처리하기 위해 사용하는 객체
 	
@@ -22,7 +28,7 @@ public class UserDAO {
 
 	
 	
-	private final String myUserGet = "select * from users where id=?";
+	private final String myUserGet = "select * from springboard.users where id=?";
 	private final String mySignUp = "insert into users(id,password,name,role) values(?,?,?,?)";
 	
 	
@@ -31,6 +37,8 @@ public class UserDAO {
 		System.out.println("=======> Jdbc 활용 로그인 기능 시작");
 		Object[] args = {vo.getId()};
 		try {
+			System.out.println(vo.getId());
+			System.out.println(jdbcTemplate);
 			UserVO user = jdbcTemplate.queryForObject(myUserGet, args, new UserRowMapper());
 			return user;
 		} catch (Exception e) {
