@@ -5,14 +5,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
+import com.Lungnaha.IntegratedWebsite.BoardService;
+import com.Lungnaha.IntegratedWebsite.BoardVO;
 import com.Lungnaha.IntegratedWebsite.UserService;
 import com.Lungnaha.IntegratedWebsite.UserVO;
+import com.Lungnaha.IntegratedWebsite.Impl.BoardDAO;
 import com.Lungnaha.IntegratedWebsite.Impl.UserDAO;
+import java.util.List;
 
 
 public class DispatcherServlet extends HttpServlet {
@@ -21,6 +26,7 @@ public class DispatcherServlet extends HttpServlet {
 	
 	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
 	UserService userService = (UserService) container.getBean("userService");
+	BoardService boardService = (BoardService) container.getBean("boardService");
 
    
 //    public DispatcherServlet() {
@@ -66,7 +72,7 @@ public class DispatcherServlet extends HttpServlet {
 			
 			//3. 페이지 전환
 		 	if(user != null){
-				response.sendRedirect("getBoardList.jsp");
+				response.sendRedirect("getBoardList.do");
 			}else{
 				response.sendRedirect("login.jsp");
 			} 
@@ -81,8 +87,38 @@ public class DispatcherServlet extends HttpServlet {
 			System.out.println("글 삭제 처리");
 		}else if(path.equals("/getBoard.do")) {
 			System.out.println("글 상세 조회 처리");
-		}else if(path.equals("/getList")) {
+			
+			// 검색 글의 번호를 추출
+			String seq = request.getParameter("seq");
+			
+			// DB 연동 처리
+			BoardVO vo = new BoardVO();
+			vo.setSeq(Integer.parseInt(seq));
+			
+			BoardDAO boardDAO = new BoardDAO();
+			BoardVO board = boardDAO.getBlogBoard(vo);
+			
+			// 검색 결과를 세션에 저장하고 상세 화면으로 이동
+			HttpSession session = request.getSession();
+			session.setAttribute("board", board);
+			response.sendRedirect("getBoard.jsp");
+			
+			
+			
+			
+			
+		}else if(path.equals("/getBoardList.do")) {
 			System.out.println("글 목록 검색 처리");
+			
+			// 바로 DB와 연동
+			BoardVO vo = new BoardVO();
+			//BoardDAO boardDAO = new BoardDAO();
+			List<BoardVO> boardList = boardService.getlistBlogBoard(vo);
+			
+			// 검색 결과를 세션에 저장하고 목록 화면으로 이동
+			HttpSession session = request.getSession();
+			session.setAttribute("boardList", boardList);
+			response.sendRedirect("getBoardList.jsp");
 		}
 		
 	}
