@@ -20,13 +20,14 @@
 	
 	System.out.println("----> " + vo.getId());
 	
+
 	UserDAO userDAO = new UserDAO();
-	UserVO user = userDAO.getUser(vo.getId());
+	UserVO user = userDAO.getUser(vo.getId()); 
 	
-	//System.out.println("----> " + user.toString());
+	System.out.println("----> " + user.toString());
 	
 	//3. 페이지 전환
-	if(vo != null){
+ 	if(vo != null){
 		response.sendRedirect("getBoardList.jsp");
 	}else{
 		response.sendRedirect("login.jsp");

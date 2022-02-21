@@ -27,9 +27,9 @@ public class UserDAO {
 	
 	
 	// 로그인 기능
-	public UserVO getUser(String id) {
+	public UserVO getUser(UserVO vo) {
 		System.out.println("=======> Jdbc 활용 로그인 기능 시작");
-		Object[] args = {id};
+		Object[] args = {vo.getId()};
 		try {
 			UserVO user = jdbcTemplate.queryForObject(myUserGet, args, new UserRowMapper());
 			return user;
@@ -52,7 +52,7 @@ public class UserDAO {
 	
 	
 	
-	// JdbcTemplate 객체로 받아오는 정보를 활용할 수 있는 형태로 바꾸어서 VO 객체에 사용할 수 있도록 넣어주는 역할을 하는 클래스
+	 //JdbcTemplate 객체로 받아오는 정보를 활용할 수 있는 형태로 바꾸어서 VO 객체에 사용할 수 있도록 넣어주는 역할을 하는 클래스
 	public	class UserRowMapper implements RowMapper<UserVO>{
 			public UserVO mapRow(ResultSet rs, int rowNum) throws SQLException{
 				UserVO user = new UserVO();
@@ -62,6 +62,13 @@ public class UserDAO {
 				user.setRole(rs.getString("ROLE"));
 				return user;
 			}
-		}
-	
+	}
+//	public UserVO mapRow(ResultSet rs, int count) throws SQLException {
+//		UserVO user = new UserVO();
+//		user.setId(rs.getString("ID"));
+//		user.setPassword(rs.getString("PASSWORD"));
+//		user.setName(rs.getString("NAME"));
+//		user.setRole(rs.getString("ROLE"));
+//		return user;
+//	}
 }
