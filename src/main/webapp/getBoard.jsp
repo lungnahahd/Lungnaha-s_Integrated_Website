@@ -26,20 +26,21 @@
 		<td align="left"><input name="title" type="text" value="<%= board.getTitle() %>"/></td>
 	</tr>
 	<tr>
-		<td bgcolor="organe">작성자</td>
-		<td align="left"><%= board.getWriter()  %></td>
+		<td bgcolor="orange">작성자</td>
+		<td align="left"><%= board.getWriter() %></td>
 	</tr>
 	<tr>
-		<td bgcolor="organe">등록인</td>
-		<td align="left"><textarea name="content" cols="40" rows="10"><%= board.getContent() %></textarea></td>
+		<td bgcolor="orange">내용</td><td align="left">
+		<textarea name="content" cols="40" rows="10"><%= board.getContent() %></textarea></td>
 	</tr>
+	
 
 </table>
 </form>
 <hr>
-<a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nabs;
-<a href="deleteBoard_proc.jsp">글삭제</a>&nbsp;&nbsp;&nabs;
-<a href="getBoardList.jsp">글목록</a>&nbsp;&nbsp;&nabs;
+<a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp;
+<a href="deleteBoard_proc.jsp">글삭제</a>&nbsp;&nbsp;&nbsp;
+<a href="getBoardList.jsp">글목록</a>&nbsp;&nbsp;&nbsp;
 
 </center>
 
