@@ -81,6 +81,25 @@ public class DispatcherServlet extends HttpServlet {
 			System.out.println("로그아웃 처리");
 		}else if(path.equals("/insertBoard.do")) {
 			System.out.println("글 등록 처리");
+			
+			// 서버에서 전송하는 데이터 받기
+			String title = request.getParameter("title");
+			String writer = request.getParameter("writer");
+			String content = request.getParameter("content");
+			
+			// 관련 데이터 활용하기
+			BoardVO vo = new BoardVO();
+			vo.setTitle(title);
+			vo.setWriter(writer);
+			vo.setContent(content);
+			
+			// insert 서비스 동작에는 리턴 값이 없음에 주의
+			boardService.insertBlogBoard(vo); 
+			
+			// 등록 작업 이후 수정된 화면을 보여주기위해서 do로 먼저 요청 -> do 수행 이후 바로 관련 jsp 보여줌
+			response.sendRedirect("getBoardList.do");
+			
+			
 		}else if(path.equals("/updateBoard.do")) {
 			System.out.println("글 수정 처리");
 		}else if(path.equals("/deleteBoard.do")) {
