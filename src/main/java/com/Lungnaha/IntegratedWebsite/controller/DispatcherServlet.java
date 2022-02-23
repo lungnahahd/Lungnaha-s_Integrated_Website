@@ -95,8 +95,9 @@ public class DispatcherServlet extends HttpServlet {
 			BoardVO vo = new BoardVO();
 			vo.setSeq(Integer.parseInt(seq));
 			
-			BoardDAO boardDAO = new BoardDAO();
-			BoardVO board = boardDAO.getBlogBoard(vo);
+			//BoardDAO boardDAO = new BoardDAO();
+			//BoardVO board = boardDAO.getBlogBoard(vo);
+			BoardVO board = boardService.getBlogBoard(vo);
 			
 			// 검색 결과를 세션에 저장하고 상세 화면으로 이동
 			HttpSession session = request.getSession();
