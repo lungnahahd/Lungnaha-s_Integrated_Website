@@ -56,7 +56,7 @@ public class BoardDAO {
 	// 글 수정
 	public void updateBlogBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 update 기능 수행");
-		jdbcTemplate.update(myUpdate, vo.getTitle(), vo.getWriter(), vo.getContent(),vo.getSeq());
+		jdbcTemplate.update(myUpdate, vo.getTitle(), vo.getContent(),vo.getSeq());
 		// 아래의 주석처리 코드는 순수 JDBC에서만 사용되던 코드
 //		try {
 //			conn = JDBCUtil.getConnection();
