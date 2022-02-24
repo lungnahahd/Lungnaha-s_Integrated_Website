@@ -17,6 +17,8 @@ import com.Lungnaha.IntegratedWebsite.UserService;
 import com.Lungnaha.IntegratedWebsite.UserVO;
 import com.Lungnaha.IntegratedWebsite.Impl.BoardDAO;
 import com.Lungnaha.IntegratedWebsite.Impl.UserDAO;
+import com.sun.java.swing.action.AlignLeftAction;
+
 import java.util.List;
 
 
@@ -102,6 +104,19 @@ public class DispatcherServlet extends HttpServlet {
 			
 		}else if(path.equals("/updateBoard.do")) {
 			System.out.println("臂 荐沥 贸府");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			String seq = request.getParameter("seq");
+			
+			BoardVO vo = new BoardVO();
+			vo.setTitle(title);
+			vo.setContent(content);
+			vo.setSeq(Integer.parseInt(seq));
+			
+			boardService.updateBlogBoard(vo);
+			
+			response.sendRedirect("getBoardList.do");
+			
 		}else if(path.equals("/deleteBoard.do")) {
 			System.out.println("臂 昏力 贸府");
 		}else if(path.equals("/getBoard.do")) {
