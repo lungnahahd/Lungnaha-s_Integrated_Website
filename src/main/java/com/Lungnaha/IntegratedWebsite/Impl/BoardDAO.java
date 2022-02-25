@@ -31,7 +31,7 @@ public class BoardDAO {
 	// 순수 JDBC는 이와 같이 원하는 sql문을 전부 작성해주어야 함
 	private final String myINSERT = "insert into blogboard(title,writer,content) values(?,?,?)";
 	private final String myUpdate = "update blogboard set title=?,content=? where seq=?";
-	private final String myDelete = "delete blogboard where seq=?";
+	private final String myDelete = "delete from blogboard where seq=?";
 	private final String myGet = "select * from blogboard where seq=?";
 	private final String myList = "select * from blogboard order by seq desc";
 	

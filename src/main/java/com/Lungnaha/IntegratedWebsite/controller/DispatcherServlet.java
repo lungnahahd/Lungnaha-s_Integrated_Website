@@ -119,6 +119,17 @@ public class DispatcherServlet extends HttpServlet {
 			
 		}else if(path.equals("/deleteBoard.do")) {
 			System.out.println("臂 昏力 贸府");
+			
+			String seq = request.getParameter("seq");
+			
+			BoardVO vo = new BoardVO();
+			vo.setSeq(Integer.parseInt(seq));
+			
+			boardService.deleteBlogBoard(vo);
+			
+			response.sendRedirect("getBoardList.do");
+			
+			
 		}else if(path.equals("/getBoard.do")) {
 			System.out.println("臂 惑技 炼雀 贸府");
 			
