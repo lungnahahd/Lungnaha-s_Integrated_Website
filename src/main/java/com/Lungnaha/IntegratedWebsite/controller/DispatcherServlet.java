@@ -55,7 +55,7 @@ public class DispatcherServlet extends HttpServlet {
 		System.out.println(path);
 		
 		// 2. 클라이언트 요청 Path에 따라 적절한 분기 처리 진행
-		if(path.equals("/login.do")) {
+		if(path.equals("/login.dodd")) {
 			System.out.println("로그인 처리");
 			//1. 사용자 입력 정보 추출
 		 	String id = request.getParameter("id");

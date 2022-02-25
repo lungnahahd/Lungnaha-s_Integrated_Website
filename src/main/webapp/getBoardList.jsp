@@ -1,15 +1,6 @@
-<%@page import="java.util.List" %>
-<%@page import="com.Lungnaha.IntegratedWebsite.Impl.BoardDAO" %>
-<%@page import="com.Lungnaha.IntegratedWebsite.BoardVO" %>
 <%@page contentType="text/html; charset=EUC-KR"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
-<%
-	/* //1. 사용자 입력 정보 추출
-	//2. DB 연동 처리
-	BoardVO vo = new BoardVO();
-	BoardDAO boardDAO =new BoardDAO(); */
-	List<BoardVO> boardList =(List) session.getAttribute("boardList");
-%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Trasitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,13 +36,22 @@
 	<th bgcolor="orange" width="150">작성자</th>
 </tr>
 
-<% for(BoardVO boad : boardList) {  %>
+<c:forEach items="${boardList }" var="board">
+<tr>
+	<td>%{board.seq }</td>
+	<td align="left"><a href="getBoard.do?seq=${board.seq }">%{board.title }</a></td>
+	<td>%{board.writer }</td>
+</tr>
+</c:forEach>
+
+
+<%-- <% for(BoardVO boad : boardList) {  %>
 <tr>
 	<td><%= boad.getSeq() %></td>
-	<td align="left"><a href="getBoard.do?seq=<%= boad.getSeq() %>"><%= boad.getTitle() %></a></td>
-	<td><%= boad.getWriter() %></td>
+	<td align="left"><a href="getBoard.do?seq=<%= boad.getSeq()%>"><%= boad.getTitle()%></a></td>
+	<td><%= boad.getWriter()%></td>
 </tr>
-<% } %>
+<% } %> --%>
 
 </table>
 <br>
