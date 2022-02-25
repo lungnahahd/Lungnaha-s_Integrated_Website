@@ -17,6 +17,7 @@ import com.Lungnaha.IntegratedWebsite.UserService;
 import com.Lungnaha.IntegratedWebsite.UserVO;
 import com.Lungnaha.IntegratedWebsite.Impl.BoardDAO;
 import com.Lungnaha.IntegratedWebsite.Impl.UserDAO;
+import com.mysql.cj.Session;
 import com.sun.java.swing.action.AlignLeftAction;
 
 import java.util.List;
@@ -81,6 +82,13 @@ public class DispatcherServlet extends HttpServlet {
 
 		}else if(path.equals("/logout.do")) {
 			System.out.println("로그아웃 처리");
+			
+			// 현재 브라우저와 연결된 세션을 가져오고, 해당 세션 객체를 강제 종료
+			HttpSession seesion = request.getSession();
+			seesion.invalidate(); 
+			
+			response.sendRedirect("login.jsp");
+			
 		}else if(path.equals("/insertBoard.do")) {
 			System.out.println("글 등록 처리");
 			
@@ -148,8 +156,6 @@ public class DispatcherServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("board", board);
 			response.sendRedirect("getBoard.jsp");
-			
-			
 			
 			
 			

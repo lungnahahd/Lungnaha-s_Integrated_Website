@@ -21,7 +21,7 @@
 <body>
 <center>
 <h1>글 목록</h1>
-<h3>환영합니다...<a href="logout_proc.jsp">로그아웃</a></h3>
+<h3>환영합니다...<a href="logout.do">로그아웃</a></h3>
 
 <form action="getBoardList.jsp" method="post">
 <table border="1" cellpadding="0" cellspacing="0" width="700">
