@@ -4,7 +4,7 @@
 
   <servlet>
     <servlet-name>action</servlet-name>
-    <servlet-class>com.Lungnaha.IntegratedWebsite.controller.DispatcherServlet</servlet-class>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>action</servlet-name>
