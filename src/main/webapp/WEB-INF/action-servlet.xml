@@ -8,10 +8,12 @@
 			<props>
 				<prop key="/login.do">login</prop>
 				<prop key="/getBoardList.do">getBoardList</prop>
+				<prop key="/insertBoard.do">insertBoard</prop>
 			</props>
 		</property>
 	</bean>
 	
 	<bean id="login" class="com.Lungnaha.IntegratedWebsite.mvcUser.LoginController"></bean>
 	<bean id="getBoardList" class="com.Lungnaha.IntegratedWebsite.mvcBoard.GetBoardListController"></bean>
+	<bean id="insertBoard" class="com.Lungnaha.IntegratedWebsite.mvcBoard.InsertBoardController"></bean>
 </beans>
