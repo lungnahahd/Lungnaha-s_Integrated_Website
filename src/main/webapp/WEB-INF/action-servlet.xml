@@ -11,6 +11,7 @@
 				<prop key="/insertBoard.do">insertBoard</prop>
 				<prop key="/getBoard.do">getBoard</prop>
 				<prop key="/updateBoard.do">updateBoard</prop>
+				<prop key="/deleteBoard.do">deleteBoard</prop>
 			</props>
 		</property>
 	</bean>
@@ -20,4 +21,5 @@
 	<bean id="insertBoard" class="com.Lungnaha.IntegratedWebsite.mvcBoard.InsertBoardController"></bean>
 	<bean id="getBoard" class="com.Lungnaha.IntegratedWebsite.mvcBoard.GetBoardController"></bean>
 	<bean id="updateBoard" class="com.Lungnaha.IntegratedWebsite.mvcBoard.UpdateBoardController"></bean>
+	<bean id="deleteBoard" class="com.Lungnaha.IntegratedWebsite.mvcBoard.DeleteBoardController"></bean>
 </beans>
