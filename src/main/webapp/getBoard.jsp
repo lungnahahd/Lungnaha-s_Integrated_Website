@@ -1,12 +1,4 @@
-<%@page import="java.util.List" %>
-<%@page import="com.Lungnaha.IntegratedWebsite.Impl.BoardDAO" %>
-<%@page import="com.Lungnaha.IntegratedWebsite.BoardVO" %>
 <%@page contentType="text/html; charset=EUC-KR"%>
-
-<%
-	BoardVO board = (BoardVO) session.getAttribute("board");
-%>
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Trasitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,19 +12,20 @@
 <a href="logout_proc.jsp">Log-Out</a>
 <hr>
 <form action="updateBoard.do" method="post">
-<input name="seq" type="hidden" value = "<%= board.getSeq() %>"/>
+<input name="seq" type="hidden" value = "${board.seq}"/>
 <table border="1" cellpadding="0" cellspacing="0">
 	<tr>
 		<td bgcolor="orange" width="70">제목</td>
-		<td align="left"><input name="title" type="text" value="<%= board.getTitle() %>"/></td>
+		<td align="left"><input name="title" type="text" value="${board.title}"/></td>
 	</tr>
 	<tr>
 		<td bgcolor="orange">작성자</td>
-		<td align="left"><%= board.getWriter() %></td>
+		<td align="left">${board.writer }</td>
 	</tr>
 	<tr>
 		<td bgcolor="orange">내용</td><td align="left">
-		<textarea name="content" cols="40" rows="10"><%= board.getContent() %></textarea></td>
+		<textarea name="content" cols="40" rows="10">
+							${board.content }</textarea></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
@@ -45,7 +38,7 @@
 </form>
 <hr>
 <a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp;
-<a href="deleteBoard.do?seq=<%= board.getSeq() %>">글삭제</a>&nbsp;&nbsp;&nbsp;
+<a href="deleteBoard.do?seq=${board.seq}">글삭제</a>&nbsp;&nbsp;&nbsp;
 <a href="getBoardList.do">글목록</a>
 
 </center>
