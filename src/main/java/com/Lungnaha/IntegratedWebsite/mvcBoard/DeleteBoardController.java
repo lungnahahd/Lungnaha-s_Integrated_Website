@@ -7,7 +7,6 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.Lungnaha.IntegratedWebsite.BoardService;
 import com.Lungnaha.IntegratedWebsite.BoardVO;
@@ -17,7 +16,7 @@ public class DeleteBoardController {
 	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
 	BoardService boardService = (BoardService) container.getBean("boardService");
 	
-	@RequestMapping("/deleteBoard.do")
+	@RequestMapping()
 	public String deleteBoard(BoardVO vo){
 		System.out.println("MVC 활용 ==> 글 삭제 구현");
 		
