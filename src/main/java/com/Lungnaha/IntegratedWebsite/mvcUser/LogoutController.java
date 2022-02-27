@@ -6,28 +6,35 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.Lungnaha.IntegratedWebsite.UserService;
 
-public class LogoutController implements Controller {
+@Controller
+public class LogoutController{
 	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
 	UserService userService = (UserService) container.getBean("userService");
 	
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session){
 		System.out.println("MVC 활용 ==> 로그아웃 구현");
 		
-		// 브라우저와 연결된 세션을 강제 종료
-		HttpSession session = request.getSession();
 		session.invalidate();
+		return "login.jsp";
+		
+		// @@@@@@@@@@@ XML 설정파일 적용 예시
+		// 브라우저와 연결된 세션을 강제 종료
+		/*
+		 * HttpSession session = request.getSession(); session.invalidate();
+		 */
 		
 		// 세션 종료 후 화면 연결
-		ModelAndView mav = new ModelAndView();
-		//mav.setViewName("login.jsp");  ==> ViewReslover 적용 전
-		mav.setViewName("redirect:login.jsp");
-		return mav;
+		/*
+		 * ModelAndView mav = new ModelAndView(); //mav.setViewName("login.jsp"); ==>
+		 * ViewReslover 적용 전 mav.setViewName("redirect:login.jsp"); return mav;
+		 */
 	}
 
 }
