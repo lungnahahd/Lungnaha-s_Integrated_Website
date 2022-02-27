@@ -22,7 +22,7 @@ public class InsertBoardController{
 		System.out.println("MVC 활용 ==> 글 등록 구현");
 		
 		boardService.insertBlogBoard(vo);
-		return "getBoardList.do";
+		return "redirect:getBoardList.do";
 		
 		
 		
