@@ -24,4 +24,16 @@
 	<bean id="updateBoard" class="com.Lungnaha.IntegratedWebsite.mvcBoard.UpdateBoardController"></bean>
 	<bean id="deleteBoard" class="com.Lungnaha.IntegratedWebsite.mvcBoard.DeleteBoardController"></bean>
 	<bean id="logout" class="com.Lungnaha.IntegratedWebsite.mvcUser.LogoutController"></bean>
+	
+	<!-- ViewResolver 등록 ==> jsp의 직접 호출 방지 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/board/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	
+	
+	
+	
+	
 </beans>
