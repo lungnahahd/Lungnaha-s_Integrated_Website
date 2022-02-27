@@ -28,7 +28,8 @@ public class DeleteBoardController implements Controller {
 		boardService.deleteBlogBoard(vo);
 		// 화면 연결
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("getBoardList.do");
+		//mav.setViewName("getBoardList.do");  ==> ViewReslover 적용 전
+		mav.setViewName("redirect:getBoardList.do");
 		return mav;
 		
 	}

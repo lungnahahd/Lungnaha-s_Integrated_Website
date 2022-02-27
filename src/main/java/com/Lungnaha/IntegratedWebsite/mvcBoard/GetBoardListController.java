@@ -32,7 +32,8 @@ public class GetBoardListController implements Controller {
 		// 검색 결과와 맵핑해서 이를 화면에 출력
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardList", boardList);
-		mav.setViewName("getBoardList.jsp");
+		//mav.setViewName("getBoardList.jsp"); ==> ViewResolver 적용 전
+		mav.setViewName("getBoardList");
 		return mav;
 	}
 }

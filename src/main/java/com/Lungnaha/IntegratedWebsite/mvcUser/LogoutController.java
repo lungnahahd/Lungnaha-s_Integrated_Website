@@ -25,7 +25,8 @@ public class LogoutController implements Controller {
 		
 		// 세션 종료 후 화면 연결
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login.jsp");
+		//mav.setViewName("login.jsp");  ==> ViewReslover 적용 전
+		mav.setViewName("redirect:login.jsp");
 		return mav;
 	}
 

@@ -32,9 +32,11 @@ public class LoginController implements Controller { // Spring MVC 구조로 개발을
 		// 결과 값을 가지고 적절한 화면에 맵핑
 		ModelAndView mav = new ModelAndView();
 		if(user != null) {
-			mav.setViewName("getBoardList.do");
+			//mav.setViewName("getBoardList.do"); ==> ViewReslover 적용 전
+			mav.setViewName("redirect:getBoardList.do");
 		}else {
-			mav.setViewName("login.jsp");
+			//mav.setViewName("login.jsp");  ==> ViewReslover 적용 전
+			mav.setViewName("redirect:login.jsp");
 		}
 		return mav;
 		

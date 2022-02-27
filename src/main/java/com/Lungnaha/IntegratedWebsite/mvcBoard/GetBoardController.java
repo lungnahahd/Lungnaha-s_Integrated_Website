@@ -28,7 +28,8 @@ public class GetBoardController implements Controller{
 		// 결과에 맞는 화면 출력
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("board", board);
-		mav.setViewName("getBoard.jsp");
+		//mav.setViewName("getBoard.jsp"); ==> ViewResolver 적용 전
+		mav.setViewName("getBoard");
 		return mav;
 	}
 }
