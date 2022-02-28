@@ -1,4 +1,4 @@
-package com.Lungnaha.IntegratedWebsite.mvcBoard;
+package com.Lungnaha.IntegratedWebsite.mvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,18 +11,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Lungnaha.IntegratedWebsite.BoardService;
 import com.Lungnaha.IntegratedWebsite.BoardVO;
+import com.Lungnaha.IntegratedWebsite.Impl.BoardDAO;
 
 @Controller
-public class InsertBoardController{
-	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
+public class InsertBoardController {/*
+									 * AbstractApplicationContext container = new
+									 * GenericXmlApplicationContext("applicationContext.xml"); BoardService
+									 * boardService = (BoardService) container.getBean("boardService");
+									 */
+	
+	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml"); 
 	BoardService boardService = (BoardService) container.getBean("boardService");
 	
 	@RequestMapping(value = "/insertBoard.do")
 	public String insertBoard(BoardVO vo) {
 		System.out.println("MVC 활용 ==> 글 등록 구현");
 		
-		boardService.insertBlogBoard(vo);
-		return "redirect:getBoardList.do";
+		BoardDAO boardDAO = new BoardDAO();
+		boardDAO.insertBlogBoard(vo);
+		//boardService.insertBlogBoard(vo);
+		return "redirect:getBoardList.jsp";
 		
 		
 		

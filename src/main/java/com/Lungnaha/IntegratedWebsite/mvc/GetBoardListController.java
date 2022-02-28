@@ -1,4 +1,4 @@
-package com.Lungnaha.IntegratedWebsite.mvcBoard;
+package com.Lungnaha.IntegratedWebsite.mvc;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,16 +30,16 @@ public class GetBoardListController  {
 	 */
 
 
-	//AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml"); 
-	//BoardService boardService = (BoardService) container.getBean("boardService");
+	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml"); 
+	BoardService boardService = (BoardService) container.getBean("boardService");
 	
 	@RequestMapping("/getBoardList.do")
 	public ModelAndView handleRequest(@RequestParam(value="searchCondition",defaultValue = "TITLE", required = false) String condition, 
-								@RequestParam(value="searchKeyword", defaultValue = "", required = false) String keyword, ModelAndView mav) {
+								@RequestParam(value="searchKeyword", defaultValue = "", required = false) String keyword,BoardVO vo, ModelAndView mav) {
 		System.out.println("Spring MVC ==> 글 목록 검색 처리");
 		System.out.println("검색 조건 : " + condition);
 		System.out.println("검색 단어 : "+ keyword);
-		//mav.addObject("boardList", boardService.getlistBlogBoard(vo));
+		mav.addObject("boardList", boardService.getlistBlogBoard(vo));
 		mav.setViewName("getBoardList.jsp");
 		return mav;
 		

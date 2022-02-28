@@ -1,4 +1,4 @@
-package com.Lungnaha.IntegratedWebsite.mvcUser;
+package com.Lungnaha.IntegratedWebsite.mvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -19,7 +19,7 @@ public class UserClient {
 //		userService.signUp(vo);
 		System.out.println("----> " + vo.toString());
 		
-		UserVO user = userService.getUser(vo.getId());
+		UserVO user = userService.getUser(vo);
 		if (user != null) {
 			System.out.println(user.getName() + " 님 환영합니다.");
 			System.out.println(user.getRole() + " 등급입니다.");

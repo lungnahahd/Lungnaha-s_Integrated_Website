@@ -1,13 +1,11 @@
-package com.Lungnaha.IntegratedWebsite.mvcUser;
+package com.Lungnaha.IntegratedWebsite.mvc;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.Lungnaha.IntegratedWebsite.UserService;
 import com.Lungnaha.IntegratedWebsite.UserVO;

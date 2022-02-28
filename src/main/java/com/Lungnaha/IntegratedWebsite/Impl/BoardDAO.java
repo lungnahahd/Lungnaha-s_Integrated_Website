@@ -7,22 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.Lungnaha.IntegratedWebsite.BoardVO;
-import com.Lungnaha.IntegratedWebsite.comm.JDBCUtil;
 
 // VO(데이터 콰린 클래스) 를 이용해서 실질적인 DB 연동을 담당하는 코드
-public class BoardDAO extends JdbcDaoSupport {
+@Repository("boardDAO")
+public class BoardDAO {
 	
-	//@Autowired // 사전에 <bean> 등록했기에 가져올 수 있는 것
-	//private JdbcTemplate jdbcTemplate; // 순수 JDBC가 아닌 JdbcTemplate을 활용해서 DB 처리하기 위해 사용하는 객체
+	@Autowired // 사전에 <bean> 등록했기에 가져올 수 있는 것
+	private JdbcTemplate jdbcTemplate; // 순수 JDBC가 아닌 JdbcTemplate을 활용해서 DB 처리하기 위해 사용하는 객체
 	
 	// 아래의 주석 처리 3개의 변수들은 모두 순수 JDBC 에서만 사용되고 JdbcTemplate 객체를 이용하면서는 사용하지 않는 변수들
 //	private Connection conn = null;
@@ -31,19 +29,16 @@ public class BoardDAO extends JdbcDaoSupport {
 	
 	// 순수 JDBC는 이와 같이 원하는 sql문을 전부 작성해주어야 함
 	private final String myINSERT = "insert into blogboard(title,writer,content) values(?,?,?)";
-	private final String myUpdate = "update blogboard set title=?,content=? where seq=?";
+	private final String myUpdate = "update blogboard9 set title=?,content=? where seq=?";
 	private final String myDelete = "delete from blogboard where seq=?";
 	private final String myGet = "select * from blogboard where seq=?";
 	private final String myList = "select * from blogboard order by seq desc";
 	
-	@Autowired
-	public void setSupperDataSource(DataSource dataSource) {
-		super.setDataSource(dataSource);
-	}
 	
 	// 글 등록
 	public void insertBlogBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 insert 기능 수행");
+		//getJdbcTemplate().update(myINSERT,vo.getTitle(), vo.getWriter(), vo.getContent());
 		jdbcTemplate.update(myINSERT, vo.getTitle(), vo.getWriter(), vo.getContent());
 		// 아래의 주석처리 코드는 순수 JDBC에서만 사용되던 코드
 //		try {
@@ -62,6 +57,7 @@ public class BoardDAO extends JdbcDaoSupport {
 	// 글 수정
 	public void updateBlogBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 update 기능 수행");
+		//getJdbcTemplate().update(myUpdate,vo.getTitle(),vo.getContent(), vo.getSeq());
 		jdbcTemplate.update(myUpdate, vo.getTitle(), vo.getContent(),vo.getSeq());
 		// 아래의 주석처리 코드는 순수 JDBC에서만 사용되던 코드
 //		try {
@@ -80,6 +76,7 @@ public class BoardDAO extends JdbcDaoSupport {
 	// 글 삭제
 	public void deleteBlogBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 delete 기능 수행");
+		//getJdbcTemplate().update(myDelete,vo.getSeq());
 		jdbcTemplate.update(myDelete, vo.getSeq());
 		// 아래의 주석처리 코드는 순수 JDBC에서만 사용되던 코드
 //		try {
@@ -97,6 +94,7 @@ public class BoardDAO extends JdbcDaoSupport {
 	public BoardVO getBlogBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 get 기능 수행");
 		Object[] args = {vo.getSeq()};
+		//return getJdbcTemplate().queryForObject(myGet, args,new BoardRowMapper());
 		return jdbcTemplate.queryForObject(myGet, args, new BoardRowMapper());
 		// 아래의 주석처리 코드는 순수 JDBC에서만 사용되던 코드
 //		BoardVO board = null;
@@ -124,6 +122,7 @@ public class BoardDAO extends JdbcDaoSupport {
 	// 글 목록 가져오기
 	public List<BoardVO> getlistBlogBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 getlist 기능 수행");
+		//return getJdbcTemplate().query(myList,new BoardRowMapper());
 		return jdbcTemplate.query(myList, new BoardRowMapper());
 		// 아래의 주석처리 코드는 순수 JDBC에서만 사용되던 코드
 //		java.util.List<BoardVO> boardList = new ArrayList<BoardVO>();
