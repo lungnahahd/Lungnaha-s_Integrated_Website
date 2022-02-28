@@ -14,13 +14,17 @@
 <h1>글 목록</h1>
 <h3>환영합니다...<a href="logout.do">로그아웃</a></h3>
 
-<form action="getBoardList.jsp" method="post">
+<form action="getBoardList.do" method="post">
 <table border="1" cellpadding="0" cellspacing="0" width="700">
 <tr>
 <td align="right">
 	<select name="searchCondition">
-	<option value="TITLE">제목
-	<option value="CONTENT">내용
+	<c:forEach items="${conditionMap }" var="option">
+		<option value="${option.value}">${option.key} 
+	</c:forEach>
+	<!-- 주석 부분과 위의 map 활용부분은 동일한 의미 -->
+	<!-- <option value="TITLE">제목
+	<option value="CONTENT">내용 -->
 	</select>
 	<input name="searchKeyword" type="text"/>
 	<input type="submit" value="검색"/>	

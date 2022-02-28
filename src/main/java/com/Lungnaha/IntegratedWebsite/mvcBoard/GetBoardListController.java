@@ -1,6 +1,8 @@
 package com.Lungnaha.IntegratedWebsite.mvcBoard;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Lungnaha.IntegratedWebsite.BoardService;
@@ -16,14 +20,26 @@ import com.Lungnaha.IntegratedWebsite.BoardVO;
 
 @Controller
 public class GetBoardListController  {
-	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
-	BoardService boardService = (BoardService) container.getBean("boardService");
+	/*
+	 * // 검색 조건 목록 설정
+	 * 
+	 * @ModelAttribute("conditionMap") // RequestMapping 보다 먼저 정보를 담을 수 있는 어노테이션 ==>
+	 * 즉 사전 작업 public Map<String, String> searchConditionMap(){ Map<String, String>
+	 * conditionMap = new HashMap<String, String>(); conditionMap.put("제목",
+	 * "TITLE"); conditionMap.put("내용", "CONTENT"); return conditionMap; }
+	 */
+
+
+	//AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml"); 
+	//BoardService boardService = (BoardService) container.getBean("boardService");
 	
 	@RequestMapping("/getBoardList.do")
-	public ModelAndView handleRequest(BoardVO vo, ModelAndView mav) {
+	public ModelAndView handleRequest(@RequestParam(value="searchCondition",defaultValue = "TITLE", required = false) String condition, 
+								@RequestParam(value="searchKeyword", defaultValue = "", required = false) String keyword, ModelAndView mav) {
 		System.out.println("Spring MVC ==> 글 목록 검색 처리");
-		
-		mav.addObject("boardList", boardService.getlistBlogBoard(vo));
+		System.out.println("검색 조건 : " + condition);
+		System.out.println("검색 단어 : "+ keyword);
+		//mav.addObject("boardList", boardService.getlistBlogBoard(vo));
 		mav.setViewName("getBoardList.jsp");
 		return mav;
 		

@@ -16,7 +16,7 @@ public class DeleteBoardController {
 	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
 	BoardService boardService = (BoardService) container.getBean("boardService");
 	
-	@RequestMapping()
+	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard(BoardVO vo){
 		System.out.println("MVC 활용 ==> 글 삭제 구현");
 		

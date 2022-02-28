@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,11 +19,10 @@ import com.Lungnaha.IntegratedWebsite.BoardVO;
 import com.Lungnaha.IntegratedWebsite.comm.JDBCUtil;
 
 // VO(데이터 콰린 클래스) 를 이용해서 실질적인 DB 연동을 담당하는 코드
-@Repository("boardDAO")
-public class BoardDAO {
+public class BoardDAO extends JdbcDaoSupport {
 	
-	@Autowired // 사전에 <bean> 등록했기에 가져올 수 있는 것
-	private JdbcTemplate jdbcTemplate; // 순수 JDBC가 아닌 JdbcTemplate을 활용해서 DB 처리하기 위해 사용하는 객체
+	//@Autowired // 사전에 <bean> 등록했기에 가져올 수 있는 것
+	//private JdbcTemplate jdbcTemplate; // 순수 JDBC가 아닌 JdbcTemplate을 활용해서 DB 처리하기 위해 사용하는 객체
 	
 	// 아래의 주석 처리 3개의 변수들은 모두 순수 JDBC 에서만 사용되고 JdbcTemplate 객체를 이용하면서는 사용하지 않는 변수들
 //	private Connection conn = null;
@@ -34,6 +35,11 @@ public class BoardDAO {
 	private final String myDelete = "delete from blogboard where seq=?";
 	private final String myGet = "select * from blogboard where seq=?";
 	private final String myList = "select * from blogboard order by seq desc";
+	
+	@Autowired
+	public void setSupperDataSource(DataSource dataSource) {
+		super.setDataSource(dataSource);
+	}
 	
 	// 글 등록
 	public void insertBlogBoard(BoardVO vo) {
