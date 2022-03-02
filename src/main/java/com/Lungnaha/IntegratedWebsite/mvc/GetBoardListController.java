@@ -20,14 +20,14 @@ import com.Lungnaha.IntegratedWebsite.BoardVO;
 
 @Controller
 public class GetBoardListController  {
-	/*
-	 * // 검색 조건 목록 설정
-	 * 
-	 * @ModelAttribute("conditionMap") // RequestMapping 보다 먼저 정보를 담을 수 있는 어노테이션 ==>
-	 * 즉 사전 작업 public Map<String, String> searchConditionMap(){ Map<String, String>
-	 * conditionMap = new HashMap<String, String>(); conditionMap.put("제목",
-	 * "TITLE"); conditionMap.put("내용", "CONTENT"); return conditionMap; }
-	 */
+	
+	 // 검색 조건 목록 설정
+	 
+	 @ModelAttribute("conditionMap") // RequestMapping 보다 먼저 정보를 담을 수 있는 어노테이션 ==>즉 사전 작업 
+	 public Map<String, String> searchConditionMap(){ Map<String, String>
+	 			conditionMap = new HashMap<String, String>(); conditionMap.put("제목","TITLE"); 
+	 conditionMap.put("내용", "CONTENT"); return conditionMap; }
+	 
 
 
 	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml"); 
