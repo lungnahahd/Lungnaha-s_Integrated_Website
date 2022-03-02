@@ -2,6 +2,7 @@ package com.Lungnaha.IntegratedWebsite.mvc;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,10 @@ import com.Lungnaha.IntegratedWebsite.Impl.UserDAO;
 public class LoginController { // Spring MVC 구조로 개발을 수정 -> 기존 구조는 "DispatcherServlet"에서만 모든 걸 처리에 구조가 복잡하고 유지보수에 부적합
 	
 	
-	AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
-	UserService userService = (UserService) container.getBean("userService");
-
+	//AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
+	//UserService userService = (UserService) container.getBean("userService");
+	@Autowired
+	private UserService userService;
 	
 	
 	@RequestMapping("/login.do")
