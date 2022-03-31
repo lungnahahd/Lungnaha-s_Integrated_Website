@@ -46,12 +46,13 @@ public class InfoController {
 		ArrayList<String> al1 = new ArrayList<>();
 		ArrayList<String> al2 = new ArrayList<>();
 		
-		while (page < 20) {
+		while (page < 10) {
 			String address = "https://search.naver.com/search.naver?where=news&query=" + query;
 			Document rawData = Jsoup.connect(address).timeout(5000).get();
 			System.out.println(rawData);
 			System.out.println(address);
-			Elements blogOption = rawData.select("dl dt");
+			//Elements blogOption = rawData.select("dl dt");
+			Elements blogOption = rawData.select("li");
 			String realURL = "";
 			String realTITLE = "";
 			
