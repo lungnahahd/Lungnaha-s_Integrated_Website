@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 
+//import sun.security.util.Length;
+
 
 
 @Controller
@@ -45,7 +47,7 @@ public class InfoController {
 		int page = 1;
 		ArrayList<String> al1 = new ArrayList<>();
 		ArrayList<String> al2 = new ArrayList<>();
-		
+		List<String> al3 = new ArrayList<>();
 		while (page < 10) {
 			String address = "https://search.naver.com/search.naver?where=news&query=" + query;
 			Document rawData = Jsoup.connect(address).timeout(5000).get();
@@ -63,8 +65,14 @@ public class InfoController {
 				al1.add(realURL);
 				al2.add(realTITLE);
 				
+				//System.out.println(al1);
+				//System.out.println(al2);
 			}
 			page += 10;
+			al3 = al2.subList(32, al1.size());
+			System.out.println(al3);
+			System.out.println(al1);
+			System.out.println(al2);
 			
 		}
 	
